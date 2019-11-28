@@ -5,7 +5,7 @@ const prefix ='>';
 
 const media = ['./media/bad.mp4', './media/biscotte.gif', './media/bonjour.gif', './media/BoNjOuR2.gif', './media/catastrophe.gif', './media/CHEH.mp4', './media/huile.gif', './media/mambo.gif', './media/sel.mp4'];
 
-var dm = 'Bonjour, les différentes commandes disponibles sont : \n**oss + ** bonjour, bagarre, fight, hello, help -> renvoie un gif ou une vidéo en lien avec OSS\n**sel** -> MAIS C\'ETAIT SUR EN FAIT!!\n**beer** -> You know what it is :kappa:\n**cheh** -> Très utile\n**hello** -> vous ne voulez pas essayer';
+var dm = 'Bonjour, les différentes commandes disponibles sont : \n**oss + ** bonjour, bagarre, fight, hello, help, danse, oops, massage -> renvoie un gif ou une vidéo en lien avec OSS\n**sel** -> MAIS C\'ETAIT SUR EN FAIT!!\n**beer** -> You know what it is :kappa:\n**cheh** -> Très utile\n**hello** -> vous ne voulez pas essayer\n**random** -> renvoie un media random';
 var dmAdmin ='\nCertaines commandes nécessitent d\'être admin pour être éxécués, parmi lesquels :\n**clear** + le nombre de messages à supprimer +1 -> supprime le nombre de messages donnés en arguments';
 
 function LoggedIn(){
