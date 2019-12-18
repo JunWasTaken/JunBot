@@ -2,14 +2,48 @@ const discord = require('discord.js');
 const bot = new discord.Client();
 const token = 'NjQ2MDI1NTcyMTE5NDc4Mjcy.XdLmxA.gVN9qtLnbL5gHok3Zzt3UEw_Gj4';
 const prefix ='>';
+const EmbedMessage = new discord.RichEmbed();
 
 const media = ['./media/bad.mp4', './media/biscotte.gif', './media/bonjour.gif', './media/BoNjOuR2.gif', './media/catastrophe.gif', './media/CHEH.mp4', './media/huile.gif', './media/mambo.gif', './media/sel.mp4'];
-
+const color = ['DEFAULT','WHITE','AQUA','GREEN','BLUE','PURPLE','LUMINOUS_VIVID_PINK','GOLD','ORANGE','RED','GREY','DARKER_GREY','NAVY','DARK_AQUA','DARK_GREEN','DARK_BLUE','DARK_PURPLE','DARK_VIVID_PINK','DARK_GOLD','DARK_ORANGE','DARK_RED','DARK_GREY','LIGHT_GREY','DARK_NAVY','RANDOM',
+  ]
 var dm = 'Bonjour, les différentes commandes disponibles sont : \n**oss + ** bonjour, bagarre, fight, hello, help, danse, oops, massage -> renvoie un gif ou une vidéo en lien avec OSS\n**sel** -> MAIS C\'ETAIT SUR EN FAIT!!\n**beer** -> You know what it is :kappa:\n**cheh** -> Très utile\n**hello** -> vous ne voulez pas essayer\n**random** -> renvoie un media random';
-var dmAdmin ='\nCertaines commandes nécessitent d\'être admin pour être éxécués, parmi lesquels :\n**clear** + le nombre de messages à supprimer +1 -> supprime le nombre de messages donnés en arguments';
+var dmAdmin ='\nCertaines commandes nécessitent d\'être admin pour être éxécutés, parmi lesquels :\n**clear** + le nombre de messages à supprimer +1 -> supprime le nombre de messages donnés en arguments';
 
 function LoggedIn(){
+    bot.user.setStatus("online");
+    bot.user.setActivity('>help', {type : 'PLAYING'});
     console.log('Bot Online');
+}
+
+function Random(length){
+    return Math.floor(Math.random()*Math.floor(length));
+}
+
+function content(args, msg){
+    msg.channel.bulkDelete(1);
+    switch(args[1]){
+        case 'sel':
+            msg.channel.send({files : [media[8]]});
+        break;
+        case 'beer':
+            
+            msg.channel.send('https://media.discordapp.net/attachments/603256095217156096/638069133707182112/hhBeer.gif');
+        break;
+        case 'cheh':
+            
+            msg.channel.send({files : [media[5]]});
+        break;
+        case 'hello':
+            
+            msg.reply('vous dit : ');
+            msg.channel.send({files : [media[3]]});
+        break;
+        case 'random': 
+            
+            msg.channel.send({files : [media[Random(media.length)]]});
+        break;
+    }
 }
 
 function oss(args, msg){
@@ -46,8 +80,26 @@ function oss(args, msg){
         msg.channel.send('Invalid Args');
 }
 
-function Random(length){
-    return Math.floor(Math.random()*Math.floor(length));
+function embed(guildMember, member){
+    EmbedMessage.setColor(color[Random(color.length)]);
+    EmbedMessage.setTitle('La profile pic de '+guildMember.nickname+' : ');
+    EmbedMessage.setImage(member.avatarURL);
+}
+
+function user(args, msg){
+    var guildMember = msg.guild.member(msg.mentions.users.first());
+    var mentionedUser = msg.mentions.users.first();
+    msg.channel.bulkDelete(1);
+    switch (args[1]){
+        case 'help':
+            msg.member.user.send(dm);
+            msg.member.user.send(dmAdmin);
+        break;
+        case 'info':
+            embed(guildMember, mentionedUser);
+            msg.channel.send(EmbedMessage);
+        break;
+    }
 }
 
 bot.on('ready', LoggedIn);
@@ -60,12 +112,11 @@ bot.on('message', msg=>{
             case 'oss':
                 oss(args, msg);
             break;
-            case 'sel':
-                msg.channel.send({files : [media[8]]});
+            case 'content':
+                content(args, msg);
             break;
-            case 'help':
-                msg.member.user.send(dm);
-                msg.member.user.send(dmAdmin);
+            case 'user':
+                user(args, msg);
             break;
             case 'clear':
                 msg.channel.bulkDelete(1);
@@ -77,27 +128,6 @@ bot.on('message', msg=>{
                     }
                 }else
                     msg.reply('Tu n\'as pas les droits petit coquinou ;)');
-            break;
-            case 'beer':
-                msg.channel.bulkDelete(1);
-                msg.channel.send('https://media.discordapp.net/attachments/603256095217156096/638069133707182112/hhBeer.gif');
-            break;
-            case 'cheh':
-                msg.channel.bulkDelete(1);
-                msg.channel.send({files : [media[5]]});
-            break;
-            case 'avatar':
-                var pic = msg.member.user.avatarURL;
-                msg.channel.send(pic);
-            break;
-            case 'hello':
-                msg.channel.bulkDelete(1);
-                msg.reply('vous dit : ');
-                msg.channel.send({files : [media[3]]});
-            break;
-            case 'random': 
-                msg.channel.bulkDelete(1);
-                msg.channel.send({files : [media[Random(media.length)]]});
             break;
         }
     }
