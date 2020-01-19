@@ -3,7 +3,8 @@ const bot = new discord.Client();
 const token = 'NjQ2MDI1NTcyMTE5NDc4Mjcy.XdLmxA.gVN9qtLnbL5gHok3Zzt3UEw_Gj4';
 const prefix ='>';
 const content = require('./content');
-const EmbedMessage = require('./embedMessages');
+const embedMessage = require('./embedMessages');
+const textFunction = require('./text');
 
 var dm = 'Bonjour, les différentes commandes disponibles sont : \n**oss + ** bonjour, bagarre, fight, hello, help, danse, oops, massage -> renvoie un gif ou une vidéo en lien avec OSS\n**sel** -> MAIS C\'ETAIT SUR EN FAIT!!\n**beer** -> You know what it is :kappa:\n**cheh** -> Très utile\n**hello** -> vous ne voulez pas essayer\n**random** -> renvoie un media random';
 var dmAdmin ='\nCertaines commandes nécessitent d\'être admin pour être éxécutés, parmi lesquels :\n**clear** + le nombre de messages à supprimer +1 -> supprime le nombre de messages donnés en arguments';
@@ -53,12 +54,8 @@ function user(args, msg){
     var mentionedUser = msg.mentions.users.first();
     msg.channel.bulkDelete(1);
     switch (args[1]){
-        case 'help':
-            msg.member.user.send(dm);
-            msg.member.user.send(dmAdmin);
-        break;
         case 'info':
-            msg.channel.send(EmbedMessage.userInfo(guildMember, mentionedUser));
+            msg.channel.send(embedMessage.userInfo(guildMember, mentionedUser));
         break;
     }
 }
@@ -78,6 +75,9 @@ bot.on('message', msg=>{
             break;
             case 'user':
                 user(args, msg);
+            break;
+            case 'help':
+                textFunction.help(msg);
             break;
             case 'clear':
                 if (msg.member.hasPermission('ADMINISTRATOR')){
