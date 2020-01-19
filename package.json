@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/JunkieUnicorn/BotHubert#readme",
   "dependencies": {
-    "discord.js": "^11.5.1"
+    "discord.js": "^11.5.1",
+    "discord.js-musicbot-addon": "^13.8.1",
+    "ffmpeg-binaries": "^3.2.2-3",
+    "ytdl-core": "^1.0.7"
   }
 }

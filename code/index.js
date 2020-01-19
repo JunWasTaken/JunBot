@@ -5,6 +5,7 @@ const prefix ='>';
 const content = require('./content');
 const embedMessage = require('./embedMessages');
 const textFunction = require('./text');
+const musicFunction = require('./music');
 
 var dm = 'Bonjour, les différentes commandes disponibles sont : \n**oss + ** bonjour, bagarre, fight, hello, help, danse, oops, massage -> renvoie un gif ou une vidéo en lien avec OSS\n**sel** -> MAIS C\'ETAIT SUR EN FAIT!!\n**beer** -> You know what it is :kappa:\n**cheh** -> Très utile\n**hello** -> vous ne voulez pas essayer\n**random** -> renvoie un media random';
 var dmAdmin ='\nCertaines commandes nécessitent d\'être admin pour être éxécutés, parmi lesquels :\n**clear** + le nombre de messages à supprimer +1 -> supprime le nombre de messages donnés en arguments';
@@ -88,6 +89,9 @@ bot.on('message', msg=>{
                     }
                 }else
                     msg.reply('Tu n\'as pas les droits petit coquinou ;)');
+            break;
+            case 'music':
+                musicFunction.music(msg, args);
             break;
         }
     }
