@@ -1,4 +1,4 @@
-const media = ['./media/reaction/bad.mp4', './media/reaction/biscotte.gif', './media/reaction/bonjour.gif', './media/reaction/BoNjOuR2.gif', './media/reaction/catastrophe.gif', './media/reaction/CHEH.mp4', './media/reaction/huile.gif', './media/reaction/mambo.gif', './media/reaction/sel.mp4'];
+const media = ['./media/reaction/bad.mp4', './media/reaction/biscotte.gif', './media/reaction/bonjour.gif', './media/reaction/BoNjOuR2.gif', './media/reaction/catastrophe.gif', './media/reaction/CHEH.mp4', './media/reaction/huile.gif', './media/reaction/mambo.gif', './media/reaction/sel.mp4', './media/reaction/rigolo.mp4'];
 const useful = require('./useful');
 
 module.exports = {
@@ -25,36 +25,43 @@ module.exports = {
     },
 
     oss: function(args, msg){
-        if (args[1]==='bonjour'){
-            msg.channel.bulkDelete(1);
-            if (!args[2]){
-                msg.reply('vous dit : ');
-                msg.channel.send({files : [media[2]]});
-            }else{
-                msg.channel.send(args[2]+', '+msg.member.nickname+' vous dit : ');
-                msg.channel.send({files : [media[2]]});
-            }
-        }else if (args[1]==='help'){
-            msg.channel.bulkDelete(1);
-            msg.channel.send({files : [media[0]]});
-        }else if (args[1]==='bagarre'){
-            msg.channel.bulkDelete(1);
-            msg.channel.send('https://tenor.com/view/oss-117-battre-gif-8766514');
-        }else if (args[1]==='fight')
-            msg.reply('J\'aime également me battre');
-        else if (args[1]==='biscotte'){
-            msg.channel.bulkDelete(1);
-            msg.channel.send({files : [media[1]]});
-        }else if (args[1]==='oops'){
-            msg.channel.bulkDelete(1);
-            msg.channel.send({files : [media[4]]});
-        }else if (args[1]==='massage'){
-            msg.channel.bulkDelete(1);
-            msg.channel.send({files : [media[6]]});
-        }else if (args[1]==='danse'){
-            msg.channel.bulkDelete(1);
-            msg.channel.send({files : [media[7]]});
-        }else 
-            msg.channel.send('Invalid Args');
+        msg.channel.bulkDelete(1);
+        switch (args[1]){
+            case 'bonjour':
+                if (!args[2]){
+                    msg.reply('vous dit : ');
+                    msg.channel.send({files : [media[2]]});
+                }else{
+                    msg.channel.send(args[2]+', '+msg.member.nickname+' vous dit : ');
+                    msg.channel.send({files : [media[2]]});
+                }
+            break;
+            case 'help':
+                msg.channel.send({files : [media[0]]});
+            break;
+            case 'bagarre':
+                msg.channel.send('https://tenor.com/view/oss-117-battre-gif-8766514');
+            break;
+            case 'fight':
+                msg.reply('J\'aime également me battre');
+            break;
+            case 'biscotte':
+                msg.channel.send({files : [media[1]]});
+            break;
+            case 'oops':
+                msg.channel.send({files : [media[4]]});
+            break;
+            case 'massage':
+                msg.channel.send({files : [media[6]]});
+            break;
+            case 'danse':
+                msg.channel.send({files : [media[7]]});
+            break;
+            case 'rigolo':
+                msg.channel.send({files : [media[9]]});
+            break;
+            default : 
+                msg.channel.send('Arguments invalides');
+        }
     }
 }

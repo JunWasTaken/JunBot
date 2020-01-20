@@ -2,8 +2,8 @@ const discord = require('discord.js');
 const bot = new discord.Client();
 const token = 'NjQ2MDI1NTcyMTE5NDc4Mjcy.XdLmxA.gVN9qtLnbL5gHok3Zzt3UEw_Gj4';
 const prefix ='>';
+const userFunction = require('./user');
 const content = require('./content');
-const embedMessage = require('./embedMessages');
 const textFunction = require('./text');
 const musicFunction = require('./music');
 
@@ -11,17 +11,6 @@ function LoggedIn(){
     bot.user.setStatus("online");
     bot.user.setActivity('>help', {type : 'PLAYING'});
     console.log('Bot Online');
-}
-
-function user(args, msg){
-    var guildMember = msg.guild.member(msg.mentions.users.first());
-    var mentionedUser = msg.mentions.users.first();
-    msg.channel.bulkDelete(1);
-    switch (args[1]){
-        case 'info':
-            msg.channel.send(embedMessage.userInfo(guildMember, mentionedUser));
-        break;
-    }
 }
 
 bot.on('ready', LoggedIn);
@@ -38,7 +27,7 @@ bot.on('message', msg=>{
                 content.reaction(args, msg);
             break;
             case 'user':
-                user(args, msg);
+                userFunction.user(args, msg);
             break;
             case 'help':
                 textFunction.help(msg);
