@@ -5,7 +5,6 @@ var servers = {};
 
 module.exports = {
     music:function(msg, args){
-        logToChannel(msg);
         play(args, msg);
     }
 }
@@ -20,13 +19,13 @@ function logToChannel(msg){
 
 function play(args, msg){
     if (!args[1]){
-        msg.reply('vous devez mettre un lien youtube pour que ça fonctionne ._.');
+        return msg.reply('vous devez mettre un lien youtube pour que ça fonctionne ._.').catch(console.error);
     }else{
         if (!servers[msg.guild.id]){
             servers[msg.guild.id] = {queue: []};
         }
         var server = servers[msg.guild.id]
-        connection.playStream(ytdl(args[1], {filter: 'audioonly'}));
+        //connection.playStream(ytdl(args[1], {filter: 'audioonly'}));
         if (!msg.guild.voiceConnection){
             logToChannel(msg);
         }
