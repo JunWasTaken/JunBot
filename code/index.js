@@ -33,7 +33,7 @@ bot.on('message', msg=>{
                 textFunction.help(msg);
             break;
             case 'clear':
-                if (msg.member.hasPermission('ADMINISTRATOR')){
+                if (msg.member.hasPermission('ADMINISTRATOR') || msg.member.id == 271733914291142656){
                     if (!args[1])
                         msg.reply('Merci de saisir des arguments valides ! >:(');
                     else{

@@ -17,7 +17,7 @@ module.exports = {
                         
                     }
                     if (msg.member.hasPermission('ADMINISTRATOR'))
-                        ban(guildMember, msg);
+                        ban(guildMember, mentionedUser, msg);
                     else
                         msg.reply('aha jokes on you, tu n\'as pas les droits !');
                 }
@@ -27,7 +27,7 @@ module.exports = {
                     msg.reply('merci de spécifier qui vous voulez ban ... boulet :facepalm:');
                 else{
                     if (msg.member.hasPermission('ADMINISTRATOR'))
-                        kick(guildMember, msg);
+                        kick(guildMember, mentionedUser, msg);
                     else
                         msg.reply('aha jokes on you, tu n\'as pas les droits !');
                 }
@@ -37,27 +37,41 @@ module.exports = {
 }
 
 
-function ban(user, msg){
+function ban(guildUser,user, msg){
     let serverID = msg.guild.id;
-    let nickname = user.nickname;
-    if (!user.bannable || user.id == 271733914291142656){
-        msg.channel.send(user+' n\'est pas bannissable !');
+    let nickname;
+
+    if (guildUser.nickname != null){
+        nickname = guildUser.nickname;
+    }else{
+        nickname = user.username;
+    }
+
+    if (!guildUser.bannable || guildUser.id == 271733914291142656){
+        msg.channel.send(guildUser+' n\'est pas bannissable !');
         console.log('Bannissement impossible');
     }else{
-        msg.member.send('Tu as été vilain.e et on a décidé de te ban !');
-        user.ban();
+        user.send('Tu as été vilain.e et on a décidé de te ban !');
+        guildUser.ban();
         msg.channel.send(nickname+' banni');
     }
 }
 
-function kick(user, msg){
+function kick(guildUser, user, msg){
     let serverID = msg.guild.id;
-    let nickname = user.nickname;
+    let nickname;
+
+    if (guildUser.nickname != null){
+        nickname = guildUser.nickname;
+    }else{
+        nickname = user.username;
+    }
+
     if (!user.kickable || user.id == 271733914291142656){
         msg.channel.send(user+' n\'est pas bannissable !');
         console.log('Kick impossible');
     }else{
-        msg.member.send('Aha tu as été kick, grosse merde !');
+        user.send('Aha tu as été kick, grosse merde !');
         user.kick();
         msg.channel.send(nickname+' kick');
     }
