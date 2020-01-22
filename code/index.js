@@ -29,6 +29,9 @@ bot.on('message', msg=>{
             case 'user':
                 userFunction.user(args, msg);
             break;
+            case 'say':
+                content.say(args, msg);
+            break;
             case 'help':
                 textFunction.help(msg);
             break;

@@ -63,5 +63,21 @@ module.exports = {
             default : 
                 msg.channel.send('Arguments invalides');
         }
+    },
+
+    say: function(args, msg){
+        let nickname;
+        let array = new Array();
+        array = args.slice(1);
+        array.forEach(item => {
+            if (nickname == null){
+                nickname+=item;
+            }else{
+                nickname+= ' '+item;
+            }
+        });
+        msg.channel.bulkDelete(1);
+        msg.channel.send(nickname);
+        return;
     }
 }
