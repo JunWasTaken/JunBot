@@ -51,7 +51,7 @@ function ban(guildUser,user, msg){
         msg.channel.send(guildUser+' n\'est pas bannissable !');
         console.log('Bannissement impossible');
     }else{
-        user.send('Tu as été vilain.e et on a décidé de te ban !');
+        guildUser.send('Tu as été vilain.e et on a décidé de te ban !');
         guildUser.ban();
         msg.channel.send(nickname+' banni');
     }
@@ -71,8 +71,9 @@ function kick(guildUser, user, msg){
         msg.channel.send(user+' n\'est pas bannissable !');
         console.log('Kick impossible');
     }else{
-        user.send('Aha tu as été kick, grosse merde !');
-        user.kick();
+        guildUser.send('Aha tu as été kick, **grosse merde !**');
+        guildUser.kick();
         msg.channel.send(nickname+' kick');
+        console.log(nickname+' kick');
     }
 }
