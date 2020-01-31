@@ -25,7 +25,7 @@ function play(args, msg){
             servers[msg.guild.id] = {queue: []};
         }
         var server = servers[msg.guild.id]
-        //connection.playStream(ytdl(args[1], {filter: 'audioonly'}));
+        server.queue.push(args[1]);
         if (!msg.guild.voiceConnection){
             logToChannel(msg);
         }

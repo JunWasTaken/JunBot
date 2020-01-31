@@ -66,18 +66,17 @@ module.exports = {
     },
 
     say: function(args, msg){
-        let nickname;
-        let array = new Array();
-        array = args.slice(1);
+        let say = "";
+        let array = args.slice(1);
         array.forEach(item => {
-            if (nickname == null){
-                nickname+=item;
+            if (say == null){
+                say+=item;
             }else{
-                nickname+= ' '+item;
+                say+= ' '+item;
             }
         });
         msg.channel.bulkDelete(1);
-        msg.channel.send(nickname);
+        msg.channel.send(say);
         return;
     }
 }

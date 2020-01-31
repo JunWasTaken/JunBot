@@ -30,7 +30,10 @@ bot.on('message', msg=>{
                 userFunction.user(args, msg);
             break;
             case 'say':
-                content.say(args, msg);
+                if (msg.member.user.id != 386535252014923780)
+                    content.say(args, msg);
+                else
+                    msg.reply('NO !');
             break;
             case 'help':
                 textFunction.help(msg);

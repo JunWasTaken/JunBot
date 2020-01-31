@@ -1,12 +1,13 @@
 Bonjour, les différentes commandes disponibles sont : 
 **oss + ** bonjour, bagarre, fight, hello, help, danse, oops, massage -> renvoie un gif ou une vidéo en lien avec OSS\n
 **content** +
-*sel* -> MAIS C\'ETAIT SUR EN FAIT!!
+*sel* -> MAIS C'ETAIT SUR EN FAIT!!
 *beer* -> You know what it is :kappa:
 *cheh* -> Très utile
 *hello* -> vous ne voulez pas essayer
 *random* -> renvoie un media random
 **user + ** info + mention de l'utilisateur -> envoie qqs infos sur l'utilisateur mentionné
+*say* + votre texte -> Laissez parler votre imagination
 
 Certaines commandes nécessitent d\'être admin pour être éxécutés, parmi lesquels :
 **clear** + le nombre de messages à supprimer +1 -> supprime le nombre de messages donnés en arguments'

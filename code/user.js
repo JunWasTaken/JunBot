@@ -13,11 +13,12 @@ module.exports = {
                 if (!args[2])
                     msg.reply('merci de spécifier qui vous voulez ban ... boulet :facepalm:');
                 else{
-                    if (args[3]){
-                        
+                    if (msg.member.hasPermission('ADMINISTRATOR')){
+                        if (mentionedUser.id != 271733914291142656)
+                            ban(guildMember, mentionedUser, msg);
+                        else
+                            msg.reply('mon créateur n\'est pas kickable dommage');
                     }
-                    if (msg.member.hasPermission('ADMINISTRATOR'))
-                        ban(guildMember, mentionedUser, msg);
                     else
                         msg.reply('aha jokes on you, tu n\'as pas les droits !');
                 }
@@ -26,9 +27,12 @@ module.exports = {
                 if (!args[2])
                     msg.reply('merci de spécifier qui vous voulez ban ... boulet :facepalm:');
                 else{
-                    if (msg.member.hasPermission('ADMINISTRATOR'))
-                        kick(guildMember, mentionedUser, msg);
-                    else
+                    if (msg.member.hasPermission('ADMINISTRATOR')){
+                        if (mentionedUser.id != 271733914291142656)
+                            kick(guildMember, mentionedUser, msg);
+                        else
+                            msg.reply('mon créateur n\'est pas kickable dommage');
+                    }else
                         msg.reply('aha jokes on you, tu n\'as pas les droits !');
                 }
             break;
