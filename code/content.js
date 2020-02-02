@@ -1,5 +1,7 @@
 const media = ['./media/reaction/bad.mp4', './media/reaction/biscotte.gif', './media/reaction/bonjour.gif', './media/reaction/BoNjOuR2.gif', './media/reaction/catastrophe.gif', './media/reaction/CHEH.mp4', './media/reaction/huile.gif', './media/reaction/mambo.gif', './media/reaction/sel.mp4', './media/reaction/rigolo.mp4'];
 const useful = require('./useful');
+var fs = require('fs');
+var text = fs.readFileSync('./media/texte/help.txt').toString().split("\n");
 
 module.exports = {
     reaction: function(args, msg){
@@ -78,5 +80,10 @@ module.exports = {
         msg.channel.bulkDelete(1);
         msg.channel.send(say);
         return;
+    },
+
+    help: function(msg){
+        let text = fs.readFileSync('./media/texte/help.txt').toString().split("\n");
+        msg.member.send(text);
     }
 }

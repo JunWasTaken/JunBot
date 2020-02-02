@@ -4,7 +4,6 @@ const token = 'NjQ2MDI1NTcyMTE5NDc4Mjcy.XdLmxA.gVN9qtLnbL5gHok3Zzt3UEw_Gj4';
 const prefix ='>';
 const userFunction = require('./user');
 const content = require('./content');
-const textFunction = require('./text');
 const musicFunction = require('./music');
 
 function LoggedIn(){
@@ -36,7 +35,7 @@ bot.on('message', msg=>{
                     msg.reply('NO !');
             break;
             case 'help':
-                textFunction.help(msg);
+                content.help(msg);
             break;
             case 'clear':
                 if (msg.member.hasPermission('ADMINISTRATOR') || msg.member.id == 271733914291142656){
