@@ -83,7 +83,8 @@ module.exports = {
     },
 
     help: function(msg){
-        let text = fs.readFileSync('./media/texte/help.txt').toString().split("\n");
-        msg.member.send(text);
+        let text = fs.readFileSync('./media/texte/help.txt', 'utf-8').toString().split("\n");
+        console.log(text);
+        msg.author.send(text);
     }
 }

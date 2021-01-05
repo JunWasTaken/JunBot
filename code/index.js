@@ -5,6 +5,7 @@ const prefix ='>';
 const userFunction = require('./user');
 const content = require('./content');
 const musicFunction = require('./music');
+const useful = require('./useful');
 
 function LoggedIn(){
     bot.user.setStatus("online");
@@ -29,7 +30,7 @@ bot.on('message', msg=>{
                 userFunction.user(args, msg);
             break;
             case 'say':
-                if (msg.member.user.id != 386535252014923780)
+                if (msg.author.id == 271733914291142656)
                     content.say(args, msg);
                 else
                     msg.reply('NO !');
@@ -38,7 +39,7 @@ bot.on('message', msg=>{
                 content.help(msg);
             break;
             case 'clear':
-                if (msg.member.hasPermission('ADMINISTRATOR') || msg.member.id == 271733914291142656){
+                if (msg.member.hasPermission('ADMINISTRATOR') || msg.author.id == 271733914291142656){
                     if (!args[1])
                         msg.reply('Merci de saisir des arguments valides ! >:(');
                     else{
@@ -51,7 +52,13 @@ bot.on('message', msg=>{
                 musicFunction.music(msg, args);
             break;
         }
+    }else if (msg.content.includes("yes") || msg.content.includes("Yes")){
+        msg.channel.send(emoji("795738291819249694"));
     }
 })
+
+function emoji(id){
+    return bot.emojis.get(id).toString();
+}
 
 bot.login(token);
