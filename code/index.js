@@ -26,9 +26,9 @@ bot.on('message', msg=>{
             case 'content':
                 content.reaction(args, msg);
             break;
-            case 'user':
+            /*case 'user':
                 userFunction.user(args, msg);
-            break;
+            break;*/
             case 'say':
                 if (msg.author.id == 271733914291142656)
                     content.say(args, msg);
@@ -38,8 +38,9 @@ bot.on('message', msg=>{
             case 'help':
                 content.help(msg);
             break;
-            case 'clear':
-                if (msg.member.hasPermission('ADMINISTRATOR') || msg.author.id == 271733914291142656){
+            /*case 'clear':
+                console.log(msg.author.);
+                if (msg.guild.member(msg.author).hasPermission('ADMINISTRATOR') || msg.author.id == 271733914291142656){
                     if (!args[1])
                         msg.reply('Merci de saisir des arguments valides ! >:(');
                     else{
@@ -50,10 +51,12 @@ bot.on('message', msg=>{
             break;
             case 'music':
                 musicFunction.music(msg, args);
-            break;
+            break;*/
         }
-    }else if (msg.content.includes("yes") || msg.content.includes("Yes")){
-        msg.channel.send(emoji("795738291819249694"));
+    }else if (msg.content.match("yes") || msg.content.match("Yes")){
+        msg.channel.send(useful.emoji(bot, "795738291819249694"));
+    }else if (msg.content.includes("owo") || msg.content.includes("OwO") || msg.content.includes("uwu") || msg.content.includes("UwU") && msg.author.id != 646025572119478272){
+        msg.channel.send(useful.furry());
     }
 })
 
