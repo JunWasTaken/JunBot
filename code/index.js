@@ -53,7 +53,7 @@ bot.on('message', msg=>{
                 musicFunction.music(msg, args);
             break;*/
         }
-    }else if (msg.content.includes("yes")){
+    }else if (msg.content == "yes"){
         msg.channel.send(useful.emoji(bot, "795738291819249694"));
     }else if ((msg.content.includes("owo") || msg.content.includes("OwO") || msg.content.includes("OwO") || msg.content.includes("uwu") || msg.content.includes("UwU") || msg.content.includes("UWU")) && msg.author.id != 646025572119478272){
         msg.channel.send(useful.furry());
