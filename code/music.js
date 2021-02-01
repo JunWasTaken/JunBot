@@ -4,20 +4,20 @@ var connection;
 var servers = {};
 
 module.exports = {
-    music:function(msg, args){
-        play(args, msg);
+    music:function(msg, args, client){
+        play(args, msg, client);
     }
 }
 
-function logToChannel(msg){
-    if (msg.member.voiceChannel){
-        connection = msg.member.voiceChannel.join();
+function logToChannel(msg, client){
+    if (msg.member){
+        client.joinFunction(msg);
     }else{
         msg.reply('vous n\'êtes pas dans un channel vocal');
     }
 }
 
-function play(args, msg){
+function play(args, msg, client){
     if (!args[1]){
         return msg.reply('vous devez mettre un lien youtube pour que ça fonctionne ._.').catch(console.error);
     }else{
@@ -26,10 +26,13 @@ function play(args, msg){
         }
         var server = servers[msg.guild.id]
         server.queue.push(args[1]);
+        console.log(server.queue);
         if (!msg.guild.voiceConnection){
             logToChannel(msg);
         }
-        server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: 'audioonly'}));
+
+        client.playFunction(msg, args[1]);
+        /*server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: 'audioonly'}));
         server.queue.shift();
         server.dispatcher.on("end", function(){
             if (server.queue[0]){
@@ -37,7 +40,7 @@ function play(args, msg){
             }else{
                 connection.disconnect();
             }
-        })
+        })*/
     }
 }
 
